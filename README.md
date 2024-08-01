@@ -1,4 +1,4 @@
-# DepartamentManager / # Sistem de Gestionare a Departamentelor
+Sistem de Gestionare a Departamentelor
 
 ## Prezentare Generală
 
