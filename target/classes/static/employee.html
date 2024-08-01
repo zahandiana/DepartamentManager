@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Employee Management</title>
+</head>
+<body>
+<h1>Employee Management</h1>
+
+<form id="employeeForm">
+  <label for="name">Name:</label>
+  <input type="text" id="name" name="name">
+  <label for="email">Email:</label>
+  <input type="text" id="email" name="email">
+
+  <button type="submit" onclick="createEmployee()">Create</button>
+</form>
+
+<hr>
+
+<table id="employeeTable">
+  <thead>
+  <tr>
+    <th>ID</th>
+    <th>Name</th>
+    <th>Email</th>
+
+    <th>Actions</th>
+  </tr>
+  </thead>
+  <tbody id="employeeList">
+
+  </tbody>
+</table>
+
+<script>
+        function displayEmployees() {
+            fetch('/employee')
+                .then(response => response.json())
+                .then(data => {
+                    const employeeList = document.getElementById('employeeList');
+                    employeeList.innerHTML = '';
+
+                    data.forEach(employee => {
+                        const row = document.createElement('tr');
+                        row.innerHTML = `
+                            <td>${employee.id}</td>
+                            <td>${employee.name}</td>
+                            <td>${employee.email}</td>
+
+                            <td>
+                                <button onclick="editEmployee(${employee.id})">Edit</button>
+                                <button onclick="deleteEmployee(${employee.id})">Delete</button>
+                            </td>
+                        `;
+                        employeeList.appendChild(row);
+                    });
+                })
+                .catch(error => console.error('Error:', error));
+        }
+
+        function createEmployee() {
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+
+
+            fetch('/createEmployee', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    name: name,
+                    email: email,
+
+                })
+            })
+            .then(response => {
+                if (response.ok) {
+                    displayEmployees();
+                    document.getElementById('name').value = '';
+                    document.getElementById('email').value = '';
+
+                }
+            })
+            .catch(error => console.error('Error:', error));
+        }
+
+        function deleteEmployee(id) {
+            fetch(`/employee/${id}`, {
+                method: 'DELETE'
+            })
+            .then(response => {
+                if (response.ok) {
+                    displayEmployees();
+                }
+            })
+            .catch(error => console.error('Error:', error));
+        }
+
+        function editEmployee(id) {
+            function editEmployee(id) {
+    const name = prompt("Enter the updated name:");
+    const email = prompt("Enter the updated email:");
+
+    fetch(`/employee/${id}`, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            name: name,
+            email: email,
+                  })
+    })
+    .then(response => {
+        if (response.ok) {
+            displayEmployees();
+        }
+    })
+    .catch(error => console.error('Error:', error));
+}
+
+        }
+
+        displayEmployees();
+    </script>
+</body>
+</html>

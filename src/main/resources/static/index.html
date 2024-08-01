@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Frontend App</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+
+        h2 {
+            color: #333;
+        }
+
+        label {
+            display: block;
+            margin-top: 10px;
+        }
+
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Add Department</h2>
+<label for="departmentId">ID:</label>
+<input type="text" id="departmentId" name="departmentId"><br>
+
+<label for="departmentDescription">Description:</label>
+<input type="text" id="departmentDescription" name="departmentDescription"><br>
+
+<label for="parentDepartmentId">Parent ID:</label>
+<input type="text" id="parentDepartmentId" name="parentDepartmentId"><br>
+
+<button onclick="addDepartment()">Add Department</button>
+
+<h2>Update Department Description</h2>
+<label for="updateDepartmentId">ID:</label>
+<input type="text" id="updateDepartmentId" name="updateDepartmentId"><br>
+
+<label for="newDescription">New Description:</label>
+<input type="text" id="newDescription" name="newDescription"><br>
+
+<button onclick="updateDepartmentDescription()">Update Department Description</button>
+
+<h2>Add Employee</h2>
+<label for="employeeId">ID:</label>
+<input type="text" id="employeeId" name="employeeId"><br>
+
+<label for="employeeName">Name:</label>
+<input type="text" id="employeeName" name="employeeName"><br>
+
+<label for="employeeDepartmentId">Department ID:</label>
+<input type="text" id="employeeDepartmentId" name="employeeDepartmentId"><br>
+
+<label for="employeeManagerId">Manager ID:</label>
+<input type="text" id="employeeManagerId" name="employeeManagerId"><br>
+
+<label for="employeeEmail">Email:</label>
+<input type="text" id="employeeEmail" name="employeeEmail"><br>
+
+<button onclick="addEmployee()">Add Employee</button>
+
+<h2>Delete Department</h2>
+<label for="deleteDepartmentId">Department ID:</label>
+<input type="text" id="deleteDepartmentId" />
+
+<button onclick="deleteDepartment()">Delete Department</button>
+
+<h2>Delete Employee</h2>
+<label for="deleteEmployeeId">ID:</label>
+<input type="text" id="deleteEmployeeId" name="deleteEmployeeId"><br>
+
+<button onclick="deleteEmployee()">Delete Employee</button>
+
+<script src="frontend.js"></script>
+</body>
+</html>
